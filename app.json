@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "Asset Manager",
+    "slug": "asseticom-asset-manager",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic"
+  }
+}
