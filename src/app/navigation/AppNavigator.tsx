@@ -1,5 +1,8 @@
 import { StyleSheet, View } from 'react-native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  type NativeStackScreenProps,
+} from '@react-navigation/native-stack';
 import { ActivityIndicator, Text } from 'react-native-paper';
 
 import { AssetDetailScreen } from '../../features/assets/screens/AssetDetailScreen';
@@ -16,8 +19,21 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-function AuthenticatedAssetListScreen() {
-  return <AssetListScreen onLogout={logout} />;
+function AuthenticatedAssetListScreen({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList, 'AssetList'>) {
+  return (
+    <AssetListScreen
+      onAddAsset={() => navigation.navigate('AssetDetail')}
+      onLogout={logout}
+    />
+  );
+}
+
+function AuthenticatedAssetDetailScreen({
+  navigation,
+}: NativeStackScreenProps<RootStackParamList, 'AssetDetail'>) {
+  return <AssetDetailScreen onCreated={() => navigation.goBack()} />;
 }
 
 export function AppNavigator() {
@@ -47,8 +63,8 @@ export function AppNavigator() {
           />
           <Stack.Screen
             name="AssetDetail"
-            component={AssetDetailScreen}
-            options={{ title: 'Asset detail' }}
+            component={AuthenticatedAssetDetailScreen}
+            options={{ title: 'Create asset' }}
           />
         </>
       ) : (
