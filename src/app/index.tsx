@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import { AppProviders } from './providers';
-import { AppNavigator } from './navigation/AppNavigator';
-import { useAuthStore } from '../features/auth/auth-store';
-import { auth } from '../shared/lib/firebase';
-import { queryClient } from '../shared/lib/query-client';
+import { useAuthStore } from '@/features/auth/stores/auth-store';
+import { auth } from '@/lib/firebase';
+import { queryClient } from '@/lib/query-client';
+
+import { AppProvider } from './provider';
+import { AppRouter } from './router';
 
 function useAuthenticationListener() {
   const setAuthState = useAuthStore((state) => state.setAuthState);
@@ -32,8 +33,8 @@ export default function App() {
   useAuthenticationListener();
 
   return (
-    <AppProviders>
-      <AppNavigator />
-    </AppProviders>
+    <AppProvider>
+      <AppRouter />
+    </AppProvider>
   );
 }

@@ -4,6 +4,12 @@
     "slug": "asseticom-asset-manager",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "automatic"
+    "userInterfaceStyle": "automatic",
+    "android": {
+      "package": "com.adamjsouthey.asseticomassetmanager"
+    },
+    "ios": {
+      "bundleIdentifier": "com.adamjsouthey.asseticomassetmanager"
+    }
   }
 }

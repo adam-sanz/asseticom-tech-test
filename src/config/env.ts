@@ -34,16 +34,11 @@ if (!result.success) {
     .map((issue) => {
       const field = issue.path[0];
 
-      return (
-        environmentVariableNames[field as keyof typeof environmentVariableNames] ??
-        String(field)
-      );
+      return environmentVariableNames[field as keyof typeof environmentVariableNames] ?? String(field);
     })
     .join(', ');
 
-  throw new Error(
-    `Missing Firebase client configuration. Set these Expo public values: ${fields}.`,
-  );
+  throw new Error(`Missing Firebase client configuration. Set these Expo public values: ${fields}.`);
 }
 
 export const firebaseConfig = result.data;
